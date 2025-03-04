@@ -21,6 +21,25 @@ const Employee = () => {
     getData();
   }, []);
 
+
+const handlleDelete = (id) => {
+    axios.delete(`http://localhost:8000/employee/delete/${id}`)
+    .then((response) => {
+        console.log(response);
+        alert("Employee Deleted!");	
+        getData();
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
+
+
+
+
+
+
   return (
     <div className="container">
     <h2 className="title">Employee List</h2>
@@ -35,6 +54,7 @@ const Employee = () => {
           <p className="employee-info">
             <strong>Salary:</strong> ${item.salary}
           </p>
+          <button onClick={()=>handlleDelete(item._id)}>Delete</button>
         </div>
       ))}
     </div>
